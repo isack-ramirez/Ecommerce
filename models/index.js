@@ -9,7 +9,7 @@ const seedProducts = require('../seeds/product-seeds');
 
 Product.belongsTo(Category,{
 
-  foreignKey: 'id',
+  foreignKey: 'category_id',
   onDelete:'CASCADE',
 
 
@@ -23,7 +23,7 @@ Product.belongsTo(Category,{
 
 
 Category.hasMany(Product, {
-  foreignKey: 'id',
+  foreignKey: 'category_id',
   onDelete: 'CASCADE',
 
 });
@@ -33,7 +33,21 @@ Category.hasMany(Product, {
 
 // Products belongToMany Tags (through ProductTag)
 
+Product.belongsToMany(Tag,{
+
+  through: ProductTag,
+  foreignKey: "product_id"
+  
+ } );
+
 // Tags belongToMany Products (through ProductTag)
+
+Tag.belongsToMany(Product,{
+  
+  through: ProductTag,
+  foreignKey: 'tag_id',
+
+});
 
 module.exports = {
   Product,
