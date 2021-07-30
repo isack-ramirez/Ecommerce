@@ -9,7 +9,8 @@ const seedProducts = require('../seeds/product-seeds');
 
 Product.belongsTo(Category,{
 
-  foreignKey: 'id'
+  foreignKey: 'id',
+  onDelete:'CASCADE',
 
 
 });
